@@ -16,6 +16,9 @@ void loop() {
     Serial.print("Sensed temp - raw - ");
     Serial.println(sensed_temp);
     Serial.print(volts); Serial.println(" volts");
+    // convert: 10 mv per degree Celsius (with 500 mV offset)
+    float temp_C = (volts - 0.5) * 100 ;
+    Serial.print(temp_C); Serial.println(" degrees Celsius ");
     delay(3200);
 }
 
