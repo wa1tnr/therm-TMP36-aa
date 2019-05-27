@@ -1,3 +1,8 @@
+// Mon May 27 22:49:20 UTC 2019
+
+// Things are getting out of hand, but there's some
+// action to work with. ;)
+
 // Mon May 27 21:29:05 UTC 2019
 // Wed  4 Jul 19:52:31 UTC 2018
 
@@ -58,7 +63,9 @@ void setup()
 }
  
 void color_toggled(void) {
-    // foo
+    if (color_toggle == -1) color_toggle = 0; // if true make false
+    if (color_toggle ==  0) color_toggle = -1; // if false make true
+    // no error test for third condition 'other'
 }
 
 // void timex(void) { } // top down // int hyster_time_a = millis(); // time_monotonic();
@@ -67,12 +74,18 @@ void timex(void) {
     int new_hysteresis = millis(); // now there is a new reading of the clock to compare to.
     int difference = new_hysteresis - hysteresis ;
 
+    // every 25 seconds, toggle the color of the first NeoPixel in the 8x strip.
     if (difference > 24999) {// elapsed time 25 seconds (or larger)
         hysteresis = new_hysteresis; // actual hysteresis record event here
         // copy the most recent reading into the history buffer, overwriting the past record
         // this is done only when the goal of 25 seconds of elapsed time has been reached.
         // meow.
         color_toggled();
+        if (color_toggle) {
+            glow_Blue1(); // cool
+        } else {
+            glow_Red1(); // warm
+        }
     }
 
     Serial.print(" delta hysteresis is  (should be 5695 ms): ");
