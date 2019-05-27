@@ -18,10 +18,13 @@
 
 
 extern void interpret_setup(void); // interpret_m4.cpp:619:void interpret_setup() {
+extern void push(int n);
+extern void dotS(void);
 
 #include "neo_pixel.h"
 
 int setpoint = 0;
+int color_toggle = 0; // -1 is true, 0 is false
 
 //TMP36 Pin Variables
 int sensorPin = A0; //the analog pin the TMP36's Vout (sense) pin is connected to
@@ -54,6 +57,10 @@ void setup()
   // Serial.println("setup() has completed. ");
 }
  
+void color_toggled(void) {
+    // foo
+}
+
 // void timex(void) { } // top down // int hyster_time_a = millis(); // time_monotonic();
 void timex(void) {
     // Serial.println("timex is reached.");
@@ -65,6 +72,7 @@ void timex(void) {
         // copy the most recent reading into the history buffer, overwriting the past record
         // this is done only when the goal of 25 seconds of elapsed time has been reached.
         // meow.
+        color_toggled();
     }
 
     Serial.print(" delta hysteresis is  (should be 5695 ms): ");
@@ -109,6 +117,7 @@ void loop()                     // run over and over again
  // Serial.println("pre-timex reached - loop iteration");
 
  timex(); delay(2400);
+ dotS(); // show the stack
  illuminate(); // perform the glowance action itself
 
  // delay(12000);
