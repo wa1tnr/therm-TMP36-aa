@@ -45,7 +45,7 @@ int hysteresis = millis(); // time_monotonic();
 void setup()
 {
   Serial.begin(9600);  //Start the serial connection with the computer
-  while(!Serial) { }
+  // turnkey - do not wait for serial connection // while(!Serial) { }
   Serial.println("Alive and running code. ");
   
                        //to view the result open the serial monitor 
@@ -80,12 +80,15 @@ void timex(void) {
         // copy the most recent reading into the history buffer, overwriting the past record
         // this is done only when the goal of 25 seconds of elapsed time has been reached.
         // meow.
+
         color_toggled();
+
         if (color_toggle) {
             glow_Blue1(); // cool
         } else {
             glow_Red1(); // warm
         }
+
     }
 
     Serial.print(" delta hysteresis is  (should be 5695 ms): ");
