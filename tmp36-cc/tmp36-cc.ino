@@ -48,16 +48,21 @@ void setup()
 #ifdef ARDUINO_SAMD_ZERO
   analogReference(AR_EXTERNAL);
 #endif
-  Serial.println("setup() has completed. ");
+  // Serial.println("setup() has completed. ");
 }
  
 // void timex(void) { } // top down // int hyster_time_a = millis(); // time_monotonic();
 void timex(void) {
-    Serial.println("timex is reached.");
+    // Serial.println("timex is reached.");
     int new_hysteresis = millis(); // now there is a new reading of the clock to compare to.
     int difference = new_hysteresis - hysteresis ;
 
-    hysteresis = new_hysteresis; // actual hysteresis record event here
+    if (difference > 24999) {// elapsed time 25 seconds (or larger)
+        hysteresis = new_hysteresis; // actual hysteresis record event here
+        // copy the most recent reading into the history buffer, overwriting the past record
+        // this is done only when the goal of 25 seconds of elapsed time has been reached.
+        // meow.
+    }
 
     Serial.print(" delta hysteresis is  (should be 5695 ms): ");
     Serial.println(difference);
@@ -98,7 +103,7 @@ void loop()                     // run over and over again
     glow_Red1(); // warm
  }
 
- Serial.println("pre-timex reached - loop iteration");
+ // Serial.println("pre-timex reached - loop iteration");
 
  timex(); delay(2400);
  illuminate(); // perform the glowance action itself

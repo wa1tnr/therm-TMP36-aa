@@ -1,0 +1,5 @@
+delta_hyster-a.jpg
+delta_hyster-b.jpg - this image shows a 25 second interval resetting the history buffer,
+with that buffer's value reported every 5.7 seconds (5695 milliseconds) - due to just
+crufty programming with delay() type time intervals added (just to make things simple
+to think about, at this early stage in the program).
