@@ -14,7 +14,7 @@ int sensorPin = A0; //the analog pin the TMP36's Vout (sense) pin is connected t
                         //the resolution is 10 mV / degree centigrade with a
                         //500 mV offset to allow for negative temperatures
  
-int hyster_time_a = millis(); // time_monotonic();
+int hysteresis = millis(); // time_monotonic();
 
 /*
  * setup() - this function runs once when you turn your Arduino on
@@ -23,6 +23,8 @@ int hyster_time_a = millis(); // time_monotonic();
 void setup()
 {
   Serial.begin(9600);  //Start the serial connection with the computer
+  while(!Serial) { }
+  Serial.println("Alive and running code. ");
   
                        //to view the result open the serial monitor 
   setup_neoPixel();
@@ -36,8 +38,13 @@ void setup()
 #endif
 }
  
-void timex(void) { } // top down // int hyster_time_a = millis(); // time_monotonic();
-
+// void timex(void) { } // top down // int hyster_time_a = millis(); // time_monotonic();
+void timex(void) {
+    int new_hysteresis = millis(); // now there is a new reading of the clock to compare to.
+    int difference = new_hysteresis - hysteresis ;
+    Serial.print(" delta hysteresis is: ");
+    Serial.println(difference);
+}
 
 void loop()                     // run over and over again
 {
@@ -74,9 +81,9 @@ void loop()                     // run over and over again
     glow_Red1(); // warm
  }
 
+ delay(999); timex; delay(2400);
  illuminate(); // perform the glowance action itself
 
  // delay(12000);
  delay(3200);
-
 }
