@@ -4,6 +4,9 @@
 
 #include <Arduino.h>
 
+// Mon May 27 22:20:52 UTC 2019
+// Previous timestamps versions &c. follow.
+
 // Sun 17 Jun 03:03:26 UTC 2018
 // 4737-a3a-0ca-
 
@@ -613,7 +616,7 @@ void runword() {
 
 /* Arduino main setup and loop */
 
-void interpret_setup() {
+void interpret_setup(void) {
   // Serial.begin(38400);
   // while (!Serial);
   Serial.println ("Forth-like interpreter:");
@@ -621,8 +624,10 @@ void interpret_setup() {
   Serial.println();
 }
 
-void interpret_loop() {
+#ifdef NOT_DEFINED_HERE_TMP_SENSOR
+void interpret_loop(void) {
   readword();
   runword();
 }
+#endif
 

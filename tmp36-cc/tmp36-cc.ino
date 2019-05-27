@@ -17,6 +17,8 @@
 // 0.73 volts at 73 F
 
 
+extern void interpret_setup(void); // interpret_m4.cpp:619:void interpret_setup() {
+
 #include "neo_pixel.h"
 
 int setpoint = 0;
@@ -40,6 +42,7 @@ void setup()
   
                        //to view the result open the serial monitor 
   setup_neoPixel();
+  interpret_setup(); // Shattuck's interpreter
 
 #ifdef AVR_MCU
   analogReference(EXTERNAL);
