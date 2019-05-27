@@ -1,5 +1,7 @@
 // Wed  4 Jul 19:52:31 UTC 2018
 
+// fedipha
+
 // 0.73 volts at 73 F
 
 
@@ -12,6 +14,8 @@ int sensorPin = A0; //the analog pin the TMP36's Vout (sense) pin is connected t
                         //the resolution is 10 mV / degree centigrade with a
                         //500 mV offset to allow for negative temperatures
  
+int hyster_time_a = millis(); // time_monotonic();
+
 /*
  * setup() - this function runs once when you turn your Arduino on
  * We initialize the serial connection with the computer
@@ -32,6 +36,9 @@ void setup()
 #endif
 }
  
+void timex(void) { } // top down // int hyster_time_a = millis(); // time_monotonic();
+
+
 void loop()                     // run over and over again
 {
  //getting the voltage reading from the temperature sensor
