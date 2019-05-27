@@ -36,10 +36,12 @@ void setup()
 #ifdef ARDUINO_SAMD_ZERO
   analogReference(AR_EXTERNAL);
 #endif
+  Serial.println("setup() has completed. ");
 }
  
 // void timex(void) { } // top down // int hyster_time_a = millis(); // time_monotonic();
 void timex(void) {
+    Serial.println("timex is reached.");
     int new_hysteresis = millis(); // now there is a new reading of the clock to compare to.
     int difference = new_hysteresis - hysteresis ;
     Serial.print(" delta hysteresis is: ");
@@ -80,6 +82,8 @@ void loop()                     // run over and over again
  if (temperatureF > (setpoint + 3)) {
     glow_Red1(); // warm
  }
+
+ Serial.println("pre-timex reached - loop iteration");
 
  delay(999); timex; delay(2400);
  illuminate(); // perform the glowance action itself
