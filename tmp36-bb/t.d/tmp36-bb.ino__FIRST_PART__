@@ -1,0 +1,28 @@
+// Wed  4 Jul 19:52:31 UTC 2018
+
+#define VCC 3.3 // or 5.0 volts
+
+int sensorPin = A0;
+ 
+#ifdef ARDUINO_SAMD_ZERO
+void setup() {
+    Serial.begin(19200);
+    analogReference(AR_EXTERNAL); // for AVR use 'EXTERNAL' here
+}
+#endif
+ 
+void loop() {
+    int sensed_T_ADC = analogRead(sensorPin);  
+    float volts = sensed_T_ADC * VCC;
+    volts /= 1024.0; 
+    Serial.print(volts); Serial.println(" volts");
+
+    // convert: 10 mv per degree (with 500 mV offset)
+    // to degrees C
+    float temp_C = (volts - 0.5) * 100 ;
+
+    float temp_F = (temp_C * 9.0 / 5.0) + 32.0;
+    Serial.print(temp_F); Serial.println(" degrees F");
+    delay(3200);
+}
+

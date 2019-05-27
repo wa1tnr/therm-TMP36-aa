@@ -1,0 +1,6 @@
+
+
+2146:void Adafruit_NeoPixel::setBrightness(uint8_t b) {
+
+  values 0-255 for brightness
+
