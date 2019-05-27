@@ -15,6 +15,8 @@ int red   = 0;
 int green = 0;
 int blue  = 0;
 
+int st_index = 0; // stack index
+
 // oldcode may 2019: Adafruit_NeoPixel pixels = Adafruit_NeoPixel(1, 40, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
@@ -56,12 +58,23 @@ void glow_Red1(void) {
     push_tuple();
 }
 
-void illuminate(void) {
+void _illuminate(void) {
     glow_Dark();
-    pop_tuple(); // top down
-    pixels.setPixelColor(0, red, green, blue);
+    pop_tuple(); // setup red green and blue values popped off the stack
+    pixels.setPixelColor(st_index, red, green, blue);
     delay(20);
     pixels.show();
+}
+
+void Marche_des_Enfants_Rouges(void) {
+    for (int i=8;i>-1;i--) {
+        st_index = i; // move this stack pointer-like entity
+        _illuminate();
+    }
+}
+
+void illuminate(void) { // alias
+    Marche_des_Enfants_Rouges();
 }
 
 void setup_neoPixel(void) {
