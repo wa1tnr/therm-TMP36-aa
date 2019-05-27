@@ -1,0 +1,10 @@
+
+  Looking for: software embedded M0 or M4 - temperature
+  sensor by Adafruit T-something like a T-15 - it is
+  analog enough to measure directly on the multimeter.
+  
+  Software would be Arduino IDE, possibly.
+  
+  Target was housed in large plastic enclosure iirc.
+  Maybe small one.  May or may not pimoroni dotstar.
+  
