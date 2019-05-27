@@ -85,7 +85,7 @@ void loop()                     // run over and over again
 
  Serial.println("pre-timex reached - loop iteration");
 
- delay(999); timex; delay(2400);
+ timex(); delay(2400);
  illuminate(); // perform the glowance action itself
 
  // delay(12000);
