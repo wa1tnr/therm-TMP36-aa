@@ -44,7 +44,10 @@ void timex(void) {
     Serial.println("timex is reached.");
     int new_hysteresis = millis(); // now there is a new reading of the clock to compare to.
     int difference = new_hysteresis - hysteresis ;
-    Serial.print(" delta hysteresis is: ");
+
+    hysteresis = new_hysteresis; // actual hysteresis record event here
+
+    Serial.print(" delta hysteresis is  (should be 5695 ms): ");
     Serial.println(difference);
 }
 
