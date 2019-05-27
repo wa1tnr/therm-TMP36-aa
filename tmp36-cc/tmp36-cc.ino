@@ -1,4 +1,16 @@
+// Mon May 27 21:29:05 UTC 2019
 // Wed  4 Jul 19:52:31 UTC 2018
+
+// filomena
+
+// narrative:  timex does okay to tick tock out 5.7 second intervals;
+//        instead, what is wanted is 5 minute intervals (do not reset
+//        hysteresis until 5 minutes has passed).
+
+//        Test case will be for 25 seconds, as 5 min is too long for
+//        testing purposes (takes up an hour pretty quickly, doing it
+//        that way - 25 second intervals should be reliable enough for
+//        extrapolation out to 5 mins.
 
 // fedipha
 
