@@ -41,8 +41,8 @@ typedef struct {
    like a Green Arrays F18A data stack,
    so overflow and underflow are not possible
    Number of items must be a power of 2 */
-const int STKSIZE = 8;
-const int STKMASK = 7;
+const int STKSIZE = 32; // const int STKSIZE = 8;
+const int STKMASK = 31; // const int STKMASK = 7;
 int stack[STKSIZE];
 int p = 0;
 
@@ -72,7 +72,7 @@ void push(int n) {
 }
 
 /* return top of stack */
-int pop() {
+int pop(void) {
   int n = TOS;
   p = (p - 1)& STKMASK;
   return n;
@@ -201,7 +201,7 @@ void dotShex() {
 
 /* display whole stack, decimal */
 NAMED(_dotS, ".s");
-void dotS() {
+void dotS(void) {
   for (int i = 0; i < STKSIZE; i++) dot();
 }
 
