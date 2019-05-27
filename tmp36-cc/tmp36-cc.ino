@@ -75,7 +75,8 @@ void timex(void) {
     int difference = new_hysteresis - hysteresis ;
 
     // every 25 seconds, toggle the color of the first NeoPixel in the 8x strip.
-    if (difference > 24999) {// elapsed time 25 seconds (or larger)
+    // if (difference > 24999) {// elapsed time 25 seconds (or larger)
+    if (difference > (60*5*1000)) {// elapsed time 5 minutes (or larger)
         hysteresis = new_hysteresis; // actual hysteresis record event here
         // copy the most recent reading into the history buffer, overwriting the past record
         // this is done only when the goal of 25 seconds of elapsed time has been reached.
