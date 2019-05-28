@@ -1,0 +1,95 @@
+The idea is that the air conditioner is somewhat
+marginal, in that it tends to cycle too quickly
+and too many times per hour.
+
+Air conditioners do best when they rarely cycle
+(because that's where the wear comes from: cycling
+the compressor on and off).
+
+To monitor this, the author needed to know the
+recent history of the compressor cycling: was it
+on most of the time, and for long durations, or
+was it cycling a lot?
+
+The project aims to show the history of cycling of
+the air conditioner, by detecting when it is on
+(quite cold air output) and when it is off (almost
+warm air output).
+
+Blue color scheme illuminated on a NeoPixel strip
+(8x) means 'cold air' and Red means 'warmer air'.
+
+Position (left to right) indicates age of the
+measurement (presently set to 3 minute intervals;
+this may be set to some other value).
+
+
+So, two blues, followed by five blanks, followed by
+a blue means that the A/C is currently ON (rightmost
+blue npx) and that it's been on for about six minutes
+(three minutes for each of the two blues on the left).
+
+Suppose the machine cycles its compressor OFF in the
+next minute.  What is seen on the 3-minute boundary?
+
+BLUE - BLUE - RED - blank  blank-blank-blank-RED
+
+The most recent record is RED (warm air) and is the
+third npx from the left - that's the most recent
+record (so far).  The rightmost RED one is the
+current condition ('live report') and is shown to
+be RED (warm).
+
+Additional info
+
+The air outdoors will frequently become cooler as the
+evening wears on; at some point it may become too cold
+to support the air conditioning idea.  Air conditioners
+try to maintain a maximum of 22 degrees F between the
+indoor and outdoor temperatures.  That's about where
+they live; any other values go against what the air
+conditioner is capable of doing.
+
+So if it's 79F outside it can be as cold as 57F indoors,
+AT THE VENT where the cold air comes out of the air
+conditioner (window mounted, in this instance).
+
+79 - 22 = 57
+
+When the outdoor temperature drops to about 61 F, the
+math shows:
+
+  61 - 22 = 39F
+
+So at the outdoor temperature of 61F we're getting closer
+to the 32F mark on the cooling coils inside the building
+(we're at 39F here).
+
+Basically, the ACU doesn't want to cycle ON sometime after
+the outdoor temperature drops below, say, 62F (this can
+depend somewhat on humidity of the outdoor air).
+
+WHEN IT STARTS to cycle rapidly (3-5 minutes ON or OFF)
+it's time to consider forcing it to not cycle at all (remain
+OFF as far as the compressor goes -- the fan runs independently
+and isn't an issue, here, for longevity of the unit, as fans
+are easily replaced).
+
+This project wants to measure those rapid cycles, and record
+them as a series of lit neopixels, in the blue-or-red color
+scheme.  This way, when the human operator casually walks
+into the room, and glances at the ACU, they can tell immediately
+what it's been doing for the last n minutes (3x8 - n is 24 minutes
+for a 3 minute interval in the program).
+
+If there's a whole bunch of reds, the machine's been cycled down
+a lot.  If there's a whole bunch of blues, it's safe to ignore
+what the machine is doing for another 24 minutes - might make
+the difference between a house that is uncomfortably warm all
+night long, and one that was able to get cool and comfortable,
+due to an air conditioner that was 'nursed' past the usual
+shutdown time, to get that last bit of cooling, without undue
+wear on the machine.
+
+
+
