@@ -92,4 +92,46 @@ shutdown time, to get that last bit of cooling, without undue
 wear on the machine.
 
 
+Also -
 
+The air conditioner under test is a 10k btu unit, for a room that
+wants about an 8k btu unit.  So it is already prone to cycling
+frequently (shortening its service life by a large amount).
+
+A fan is employed (at floor level; a good 22" diameter unit) to
+move cold air from the (one) air-conditioned room in the home,
+to the remainder of the dwelling (one level, no stairs).  This
+has the effect (when placed exactly right) of preventing the
+ACU from cycling as often, as it tends to add heat load to the
+one room that is being air conditioned (by exhausting its coolest
+air out of the room - presumably, warm air returns near the
+ceiling, to the air conditioned room, thus promoting cooling
+far from the window-mounted air conditioning unit).
+
+One of the side-goals of the project is to adjust placement of
+that fan, by (again) measuring the frequency by which the ACU
+cycles down the compressor.
+
+Another also -
+
+When someone comes home late in the day, on a hot and humid day
+(that is rapidly cooling later that evening) there may be only
+a short opportunity to run the (powered-off) air conditioner,
+when the person gets home after a busy day away from the home.
+
+There are times when it is just not a good idea to run the
+air conditioner when nobody's home.  Arguably, there may not
+be any time when the ACU should be run, when nobody's home. ;)
+
+So maximizing the use of it during a fairly brief time window
+(from near sunset, until it becomes too cold outdoors to support
+the air conditioning idea at all).
+
+Again, part of that maximization comes from knowledge of the 
+history of the unit's cycling its compressor, ON an OFF.
+
+
+ - - -
+
+Note: redundant explanations need to be condensed into a single
+narrative that is not as repetitive as this first draft, is. ;)
