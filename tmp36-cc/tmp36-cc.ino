@@ -25,6 +25,7 @@
 extern void interpret_setup(void); // interpret_m4.cpp:619:void interpret_setup() {
 extern void push(int n);
 extern void dotS(void);
+extern void show_master_pixel();
 
 #include "neo_pixel.h"
 
@@ -46,6 +47,7 @@ void setup()
 {
   Serial.begin(9600);  //Start the serial connection with the computer
   // turnkey - do not wait for serial connection // while(!Serial) { }
+  // while(!Serial) { }
   Serial.println("Alive and running code. ");
   
                        //to view the result open the serial monitor 
@@ -76,12 +78,22 @@ void timex(void) {
 
     // every 25 seconds, toggle the color of the first NeoPixel in the 8x strip.
     // if (difference > 24999) {// elapsed time 25 seconds (or larger)
-    if (difference > (60*5*1000)) {// elapsed time 5 minutes (or larger)
+    // if (difference > (60*5*1000)) {// elapsed time 5 minutes (or larger)
+    if (difference > (60*3*1000)) {// elapsed time 3 minutes (or larger)
+
+    // if (difference > (3*6*1000)) {// elapsed time 18 seconds (or larger)
         hysteresis = new_hysteresis; // actual hysteresis record event here
         // copy the most recent reading into the history buffer, overwriting the past record
         // this is done only when the goal of 25 seconds of elapsed time has been reached.
         // meow.
 
+
+        // these two were swapped.  Want an accurate stack report
+        illuminate(); // perform the glowance action itself
+        dotS(); // show the stack //
+
+#ifdef TESTING_ONLY
+        // testing only
         color_toggled();
 
         if (color_toggle) {
@@ -89,6 +101,7 @@ void timex(void) {
         } else {
             glow_Red1(); // warm
         }
+#endif
 
     }
 
@@ -126,17 +139,23 @@ void loop()                     // run over and over again
 
  if (temperatureF < setpoint) {
     glow_Blue1(); // cool
+    show_master_pixel();
  }
  if (temperatureF > (setpoint + 3)) {
     glow_Red1(); // warm
+    show_master_pixel();
  }
 
  // Serial.println("pre-timex reached - loop iteration");
 
- timex(); delay(2400);
+ timex(); // speed up things a bit 0018z 28 may // delay(2400);
+
+#ifdef OOPS_NOPE
  dotS(); // show the stack
  illuminate(); // perform the glowance action itself
+#endif
 
  // delay(12000);
- delay(3200);
+ // delay(3200);
+ delay(800); // new kludge 0133z 28 may
 }
