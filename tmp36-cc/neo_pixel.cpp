@@ -48,27 +48,33 @@ void glow_Blue1(void) {
     red   =  0;
     green =  0;
     blue  = 5;
-    push_tuple();
 }
 
 void glow_Red1(void) {
     red   =  2;
     green =  0;
     blue  =  0;
-    push_tuple();
 }
 
 void _illuminate(void) {
     glow_Dark();
     pop_tuple(); // setup red green and blue values popped off the stack
     pixels.setPixelColor(st_index, red, green, blue);
+    red = 0; green = 0; blue = 0;
     delay(20);
     pixels.show();
+    // delay(50); // kludge debug 0122z 28 may
 }
 
 void Marche_des_Enfants_Rouges(void) {
-    for (int i=8;i>-1;i--) {
-        st_index = i; // move this stack pointer-like entity
+    push_tuple(); // no clear idea where this should happen, but ..
+                  // it was happening too often, prior.  The idea
+                  // is that it updates the next interval-station.
+
+    for (int i=8;i>0;i--) {
+        st_index = i-1; // move this stack pointer-like entity
+        // Serial.print("st_index: ");
+        // Serial.println(st_index);
         _illuminate();
     }
 }
@@ -77,12 +83,17 @@ void illuminate(void) { // alias
     Marche_des_Enfants_Rouges();
 }
 
+void show_master_pixel(void) {
+    pixels.setPixelColor(0, red, green, blue);
+    pixels.show();
+}
+
 void setup_neoPixel(void) {
     pixels.begin();
 
-    glow_Red1();
-    glow_Blue1();
+    // glow_Red1();
+    // glow_Blue1();
 
-    illuminate();
+    // illuminate();
 }
 
