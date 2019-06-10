@@ -1,8 +1,20 @@
-// Mon Jun 10 01:35:46 UTC 2019
+// Mon Jun 10 01:51:27 UTC 2019
 
+// jacob marley this-a-way
+
+// Tue May 28 20:30:14 UTC 2019
+// hownow
+// turnkey - 2351z
+// fittoria
+
+
+// Things are getting out of hand, but there's some
+// action to work with. ;)
+
+// Mon May 27 21:29:05 UTC 2019
 // Wed  4 Jul 19:52:31 UTC 2018
 
-// vrabli filomena
+// filomena
 
 // narrative:  timex does okay to tick tock out 5.7 second intervals;
 //        instead, what is wanted is 5 minute intervals (do not reset
@@ -39,11 +51,14 @@ int hysteresis = millis(); // time_monotonic();
  * setup() - this function runs once when you turn your Arduino on
  * We initialize the serial connection with the computer
  */
+#define TURNKEY_COMPILE
 void setup()
 {
   Serial.begin(9600);  //Start the serial connection with the computer
   // turnkey - do not wait for serial connection // while(!Serial) { }
-  // while(!Serial) { }
+#ifndef TURNKEY_COMPILE
+  while(!Serial) { }
+#endif
   Serial.println("Alive and running code. ");
   
                        //to view the result open the serial monitor 
@@ -131,16 +146,31 @@ void loop()                     // run over and over again
  // setpoint = 55 ; // 20 second response time after cycle OFF air conditioner compressor!
 
  // may 2019 - went to 5 volts probably 3.3v calib // setpoint = 51 ;
- setpoint = 49 ; // was: 51
+ // UNDO 28 May 2059z // setpoint = 51 ;
+
+// for fridge: #define SETPOINT_F 58 // as flashed 23:57z 28 May 2019
+#define SETPOINT_F 49 // 51 // as flashed 01:41z 10 Jun 2019
+
+// derate these minus two 71 becomes 69 &c.
+
+ setpoint = SETPOINT_F ; // 72 gave either blue or green
+                         // 73 gave blue
+                         // 71 gave green (middle ground indication)
+ // experimental
+ glow_Green1(); // indeterminate
+ delay(20);
+ show_master_pixel();
 
  if (temperatureF < setpoint) {
     glow_Blue1(); // cool
     show_master_pixel();
  }
+
  if (temperatureF > (setpoint + 3)) {
     glow_Red1(); // warm
     show_master_pixel();
  }
+
 
  // Serial.println("pre-timex reached - loop iteration");
 
