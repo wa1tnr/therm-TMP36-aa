@@ -1,12 +1,8 @@
-// Mon May 27 22:49:20 UTC 2019
+// Mon Jun 10 01:35:46 UTC 2019
 
-// Things are getting out of hand, but there's some
-// action to work with. ;)
-
-// Mon May 27 21:29:05 UTC 2019
 // Wed  4 Jul 19:52:31 UTC 2018
 
-// filomena
+// vrabli filomena
 
 // narrative:  timex does okay to tick tock out 5.7 second intervals;
 //        instead, what is wanted is 5 minute intervals (do not reset
@@ -135,7 +131,7 @@ void loop()                     // run over and over again
  // setpoint = 55 ; // 20 second response time after cycle OFF air conditioner compressor!
 
  // may 2019 - went to 5 volts probably 3.3v calib // setpoint = 51 ;
- setpoint = 51 ;
+ setpoint = 49 ; // was: 51
 
  if (temperatureF < setpoint) {
     glow_Blue1(); // cool
