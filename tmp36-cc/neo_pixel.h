@@ -13,6 +13,7 @@ extern void setup_neoPixel(void);
 extern void glow_Dark(void);
 extern void glow_Blue1(void);
 extern void glow_Red1(void);
+extern void glow_Green1(void);
 extern void illuminate(void);
 
 /*
