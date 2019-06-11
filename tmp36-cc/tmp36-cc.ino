@@ -1,6 +1,7 @@
-// Mon Jun 10 01:51:27 UTC 2019
+// Tue Jun 11 21:34:46 UTC 2019
+// Mon Jun 10 02:57:54 UTC 2019
 
-// jacob marley this-a-way
+// quirado tanque jacob marley this-a-way
 
 // Tue May 28 20:30:14 UTC 2019
 // hownow
@@ -45,6 +46,8 @@ int sensorPin = A0; //the analog pin the TMP36's Vout (sense) pin is connected t
                         //the resolution is 10 mV / degree centigrade with a
                         //500 mV offset to allow for negative temperatures
  
+int pwmPin = A2; // cannot use A0 nor A1 for PWM.
+
 int hysteresis = millis(); // time_monotonic();
 
 /*
@@ -149,7 +152,8 @@ void loop()                     // run over and over again
  // UNDO 28 May 2059z // setpoint = 51 ;
 
 // for fridge: #define SETPOINT_F 58 // as flashed 23:57z 28 May 2019
-#define SETPOINT_F 49 // 51 // as flashed 01:41z 10 Jun 2019
+#define SETPOINT_F 52 // 51 // as flashed 02:57z 10 Jun 2019
+// result: 49 gave ambiguous condition
 
 // derate these minus two 71 becomes 69 &c.
 
