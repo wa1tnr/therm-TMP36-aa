@@ -2,10 +2,11 @@
 
 #include <Adafruit_NeoPixel.h> // REQUIRED: https://github.com/adafruit/Adafruit_NeoPixel
 #include "neo_pixel.h"
-#define PINnope         40 // peculiar to Metro M0 Express.  Feather M0 Express: PIN 8 
+#define PIN_SOLO        40 // peculiar to Metro M0, M4 Express.  Feather M0 Express: PIN 8
 #define PIN             12 // Metro M4 Express - as found wired to 8x NeoPixel strip - May 2019
 #define NUMPIXELSnope    1 // Metro M0 Express
 #define NUMPIXELS        8 // external 8x npx strip - may 2019
+#define HIGH_PIXEL       5
 
 extern void push(int n);
 extern int pop(void);
@@ -19,6 +20,7 @@ int st_index = 0; // stack index
 
 // oldcode may 2019: Adafruit_NeoPixel pixels = Adafruit_NeoPixel(1, 40, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel master_pixel = Adafruit_NeoPixel(NUMPIXELS, PIN_SOLO, NEO_GRB + NEO_KHZ800);
 
 void pop_tuple(void) {
     int extra = pop();
@@ -42,6 +44,12 @@ void glow_Dark(void) {
     delay(25);
     pixels.show();
     delay(50);
+}
+
+void glow_Green1(void) {
+    red   =  0;
+    green =  5;
+    blue  = 0;
 }
 
 void glow_Blue1(void) {
@@ -84,12 +92,52 @@ void illuminate(void) { // alias
 }
 
 void show_master_pixel(void) {
-    pixels.setPixelColor(0, red, green, blue);
-    pixels.show();
+    // Adafruit_NeoPixel master_pixel = Adafruit_NeoPixel(NUMPIXELS, PIN_SOLO, NEO_GRB + NEO_KHZ800);
+    master_pixel.setPixelColor(0, 0, 0, 0);
+    master_pixel.show();
+    delay(88); // give human time to notice
+
+    master_pixel.setPixelColor(0, red, green, blue);
+    master_pixel.show();
 }
 
 void setup_neoPixel(void) {
     pixels.begin();
+    master_pixel.begin();
+
+    for (int i=8;i>0;i--) {
+        Serial.println(i);
+        pixels.setPixelColor((i-1), 2, 2, 8);
+    }
+    pixels.show(); delay(200);
+
+    for (int i=8;i>0;i--) {
+        pixels.setPixelColor((i-1), 0, 0, 0);
+    }
+    pixels.show(); delay(200);
+
+    delay(20);
+    pixels.setPixelColor(HIGH_PIXEL, 0, 0, 0);
+    delay(20);
+    pixels.show(); delay(200);
+
+    delay(20);
+
+    pixels.setPixelColor(HIGH_PIXEL, 9, 1, 1);
+    delay(20);
+    pixels.show(); delay(200);
+
+    pixels.setPixelColor(HIGH_PIXEL, 0, 0, 0);
+    delay(20);
+    pixels.show(); delay(200);
+
+    master_pixel.setPixelColor(0, 0, 0, 0);
+
+    delay(20);
+    pixels.show();
+    delay(20);
+    master_pixel.show();
+    delay(20);
 
     // glow_Red1();
     // glow_Blue1();
