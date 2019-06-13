@@ -30,6 +30,24 @@
 //       What is desired (instead) is a trend towards
 //       becoming warmer (or cooler) and a lock on that
 //       trend.
+
+//       interrupt original text flow.
+
+//       TODO: break these comments out as a support document. ;) 13 JUNE 2019
+
+//       EDIT: A noisy USB pack was the culprit - the system
+//       does not really need true hysteresis for basic use,
+//       as the air conditioner it was designed to monitor
+//       has sufficient temperature swing to make it
+//       unnecessary to also add hysteresis to the temperature
+//       history gathering device (this project).
+//
+//       In some sense, it may be said that the project
+//       'borrows' the hysteresis of the air conditioner's
+//       circuits that exhibit it. ;)  sort-of. (shrug)
+
+//       continue original text flow:
+
 //       If it was recently cooler, and is now warming,
 //       then once it reliably reaches the warmer state,
 //       the sytem should report 'it is now warm enough'
