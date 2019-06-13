@@ -30,9 +30,11 @@ Green: 25 to 29 or so.
 
 Blue:  below 25.
 
+(approx; by human memory/recollection only)
+
 Those are meter readings taken by the human, and are
 mapped by a map() function to PWM values that exhibit
 these numbers as shown on the meter (68k ohms inline
 with the positive (+) wire of the meter movement - some
-50 uA full-scale (native).
+50 uA full-scale (native)).
 
