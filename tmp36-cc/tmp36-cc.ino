@@ -1,4 +1,4 @@
-// Wed Jun 12 17:27:41 UTC 2019
+// Wed Jun 12 18:34:01 UTC 2019 as flashed last
 // Tue Jun 11 21:34:46 UTC 2019
 // Mon Jun 10 02:57:54 UTC 2019
 
@@ -287,9 +287,33 @@ void loop()                     // run over and over again
  intmd_val = 50 * 62.4; //
 
 
- intmd_val = 50 * temperatureF;
+ intmd_val = 50 * 56.1; // 2605 for midscale
+ intmd_val = 50 * 54.1; // 2605 for midscale
+ intmd_val = 50 * 53.1; // 2605 for midscale
+ intmd_val = 50 * 52.1; // 2605 for midscale
+ intmd_val = 50 * 44.1; // 2605 for midscale
+ intmd_val = 50 * 59.1; // 2605 for midscale
+ intmd_val = 50 * 54.1; // 2605 for midscale
+ intmd_val = 50 * 75.1; // 2605 for midscale
+ intmd_val = 50 * 75.7; // 2605 for midscale
+ intmd_val = 50 * 52.5; // 2605 for midscale
+ intmd_val = 50 * 86.5; // 2605 for midscale
+ intmd_val = 50 * 82.5; // 2605 for midscale
+ intmd_val = 50 * 63.25;// 2605 for midscale
  // map(value, fromLo, fromHi, toLo, toHi);
- hourvoltage = map(intmd_val, 2405, 3840, 21, 234);     // Convert hour to PWM duty cycle
+ // hourvoltage = map(intmd_val, 2405, 2770, 21, 234);     // Convert hour to PWM duty cycle
+
+    // maxscale (octave) 40.1 (40.2 enters mainscale)
+    // maxscale (octave) 86.5 (86.6 minscale next octave)
+
+    // minscale (fundam) 40.2
+    // midscale (fundam) 52.5 for 2105, 3070, 21, 234 mapping.
+    // maxscale (funda?) 63.2
+
+    // midscale (octave) 75.7 for 2105, 3070, 21, 234 mapping.
+
+ intmd_val = 50 * temperatureF;
+    hourvoltage = map(intmd_val, 2105, 3070, 21, 234);     // Convert hour to PWM duty cycle
  pwm_sender(); // call the sender and give it hourvoltage
 
  // Serial.println("pre-timex reached - loop iteration");
